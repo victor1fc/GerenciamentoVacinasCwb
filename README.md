@@ -1,6 +1,7 @@
 # GerenciamentoVacinas
 
 Esse projeto foi elaborado para a disciplina Atividade Extensionista II da UNINTER.
+
 O sistema foi desenvolvido seguindo a arquitetura de software MVC (Model-ViewController) utilizando Java Spring Boot, junto com Hibernate para manipular o banco de
 dados MySQL.
 No sistema implementado pode-se gerenciar a carteira de vacinas dos pacientes, cadastrando os dados pessoais e adicionando as doses aplicadas. De acordo com o tipo de vacina cadastrado, quando necessário ser aplicado duas ou mais doses de vacina, o usuário será notificado duas vezes via e-mail quando a data da próxima dose de vacina estiver perto: uma vez com sete dias de antecedência e outra vez com um dia de antecedência. Dessa forma, o sistema da Unidade de Saúde irá lembrar o paciente a manter sua carteira de vacinação em dia.

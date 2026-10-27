@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Sistema de Saúde</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+      <style>
+         body {
+           padding-top: 4.5rem;
+         }
+         .time {
+         font-size: 1.0em;
+         font-weight: bold;
+         text-align: center;
+         margin-bottom: 20px;
+         color: white;
+      }
+      </style>
+</head>
+<body>
+
+   <div th:replace="fragments/menu :: menu"></div>
+
+   <div class="container">
+      <div class="bg-light p-5 rounded">
+			<h1>Dados do Funcionário</h1>
+			<hr>
+			<div>
+				<form th:action="@{/funcionarios}" th:object="${funcionario}" method="POST">
+					<input id="ativo" type="hidden" th:field="*{id}"/>
+					<div class="mb-3 form-check form-switch">
+						<label class="form-check-label" for="ativo">Registro ativo</label>
+						<input class="form-check-input" role="switch" id="ativo" type="checkbox" th:field="*{ativo}"/>
+					</div>
+					<div class="mb-6">
+						<label class="form-label" for="nome">Nome</label>
+						<input class="form-control" id="nome" type="text" th:field="*{nome}"/>
+						<span style="color: red" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+					</div>					
+					<div class="row">
+						<div class="col-4 mb-3">
+							<label class="form-label" for="cpf">CPF</label>
+							<input class="form-control" id="cpf" type="text" th:field="*{cpf}" />
+							<span style="color: red" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-3 mb-3">
+							<label class="form-label" for="telefone">Telefone</label>
+							<input class="form-control" id="telefone" type="text" th:field="*{telefone}"/>
+						</div>
+						<div class="col-3 mb-3">
+							<label class="form-label" for="celular">Celular</label>
+							<input class="form-control" id="celular" type="text" th:field="*{celular}"/>
+						</div>
+						<div class="col-6 mb-3">
+							<label class="form-label" for="email">E-mail</label>
+							<input class="form-control" id="email" type="text" th:field="*{email}"/>
+							<span style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+						</div>
+					</div>
+					<div class="mb-3">
+						<input class="btn btn-primary" type="submit" value="Salvar"/>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	
+	<script crossorigin="anonymous" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="></script>
+	<script crossorigin="anonymous" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js" integrity="sha512-d4KkQohk+HswGs6A1d6Gak6Bb9rMWtxjOa0IiY49Q3TeFd5xAzjWXDCBW9RS7m86FQ4RzM2BdHmdJnnKRYknxw=="></script>	
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#cpf').mask('999.999.999-99').on('focus click', function() {
+				  		$(this)[0].setSelectionRange(0, 0);
+				 	});
+			$('#telefone').mask('(99) 9999-9999').on('focus click', function() {
+			  			$(this)[0].setSelectionRange(0, 0);
+			  		});
+			$('#celular').mask('(99) 99999-9999').on('focus click', function() {
+			  			$(this)[0].setSelectionRange(0, 0);
+			  		})			
+		});
+	</script>
+	<script>
+      var timeDisplay = document.getElementById("time");
+
+      function refreshTime() {
+         console.log("JavaScript carregado e executando!");
+         var dateString = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
+         var formattedString = dateString.replace(", ", " - ");
+         timeDisplay.innerHTML = formattedString;
+      }
+
+      setInterval(refreshTime, 1000);
+   </script>
+   <div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>
+
+
+
+
+

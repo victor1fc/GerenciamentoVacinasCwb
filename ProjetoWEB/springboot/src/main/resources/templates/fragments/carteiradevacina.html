@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<nav th:fragment="carteiradevacina">
+<div th:if="${carteiraDeVacinas.id != null}" class="mb-3">	
+	
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <!-- Cabeçalho da tabela com os nomes dos produtos -->
+                <th></th>
+                <th th:each="produto : ${produtos}" th:text="${produto.nome}"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Corpo da tabela com os itens da carteira de vacinas -->
+            
+           
+            
+            <tr th:if="${#lists.size(vacinas) > 0}" >
+<!--             	<th scope="row" th:text="'1ª dose'"></th> -->
+				<th scope="row" th:text="'1ª dose'"></th>
+                <td style="white-space: pre-line" th:each="item : ${vacinas[0]}" th:utext="${((item.produtoEstoque != null) && (item.produtoEstoque.nome != null)) ? #strings.concat(#temporals.format(item.dataHora, 'dd/MM/yyyy HH:mm'),  '<br/>', item.produtoEstoque.marca.getDescricao(),  '<br/>', item.funcionario.nome)  : ''}"></td>
+<!--                 <td th:each="produto : ${produtos}" th:text="${item.produto.nome == produto.nome ? #temporals.format(item.dataHora, 'dd/MM/yyyy HH:mm') : ''}"></td> -->
+            </tr>
+			<tr th:if="${#lists.size(vacinas) > 1}" >
+				<th scope="row" th:text="'2ª dose'"></th>
+                <td style="white-space: pre-line" th:each="item : ${vacinas[1]}" th:utext="${((item.produtoEstoque != null) && (item.produtoEstoque.nome != null))  ? #strings.concat(#temporals.format(item.dataHora, 'dd/MM/yyyy HH:mm'),  '<br/>', item.produtoEstoque.marca.getDescricao(),  '<br/>', item.funcionario.nome) : ''}"></td>
+            </tr>
+			<tr th:if="${#lists.size(vacinas) > 2}" >
+				<th scope="row" th:text="'3ª dose'"></th>
+                <td style="white-space: pre-line" th:each="item : ${vacinas[2]}" th:utext="${((item.produtoEstoque != null) && (item.produtoEstoque.nome != null))  ? #strings.concat(#temporals.format(item.dataHora, 'dd/MM/yyyy HH:mm'),  '<br/>', item.produtoEstoque.marca.getDescricao(),  '<br/>', item.funcionario.nome)  : ''}"></td>
+            </tr>
+			<tr th:if="${#lists.size(vacinas) > 3}" >
+				<th scope="row" th:text="'1ª dose reforço'"></th>
+                <td style="white-space: pre-line" th:each="item : ${vacinas[3]}" th:utext="${((item.produtoEstoque != null) && (item.produtoEstoque.nome != null))  ? #strings.concat(#temporals.format(item.dataHora, 'dd/MM/yyyy HH:mm'),  '<br/>', item.produtoEstoque.marca.getDescricao(),  '<br/>', item.funcionario.nome)  : ''}"></td>
+            </tr>
+			<tr th:if="${#lists.size(vacinas) > 4}" >
+				<th scope="row" th:text="'2ª dose reforço'"></th>
+                <td style="white-space: pre-line" th:each="item : ${vacinas[4]}" th:utext="${((item.produtoEstoque != null) && (item.produtoEstoque.nome != null))  ? #strings.concat(#temporals.format(item.dataHora, 'dd/MM/yyyy HH:mm'),  '<br/>', item.produtoEstoque.marca.getDescricao(),  '<br/>', item.funcionario.nome)  : ''}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</nav>
+</body>
+</html>
